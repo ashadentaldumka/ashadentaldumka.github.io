@@ -692,16 +692,17 @@ p{margin:0}
     this.opts = PALETTES[canvas.dataset.theme] || PALETTES.light;
     this.pts = [];
     this.visible = true;
-    this.resize();
   }
-  Network.prototype.resize = function () {
-    var r = this.canvas.getBoundingClientRect();
+  // r is a size from ResizeObserver (no forced layout); falls back to measuring
+  Network.prototype.resize = function (r) {
+    r = r || this.canvas.getBoundingClientRect();
     if (!r.width || !r.height) return;
     this.dpr = Math.min(window.devicePixelRatio || 1, 2);
     this.w = r.width; this.h = r.height;
     this.canvas.width = Math.round(r.width * this.dpr);
     this.canvas.height = Math.round(r.height * this.dpr);
     this.seed();
+    if (reduced) this.draw(0); // static frame only
   };
   Network.prototype.seed = function () {
     var isSmall = this.w < 640;
@@ -764,15 +765,23 @@ p{margin:0}
     nets.forEach(function (n) { vo.observe(n.canvas); });
   }
 
-  var resizeTimer;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () { nets.forEach(function (n) { n.resize(); }); }, 150);
-  });
-
-  if (reduced) {
-    nets.forEach(function (n) { n.draw(0); }); // static frame only
+  if ('ResizeObserver' in window) {
+    var ro = new ResizeObserver(function (entries) {
+      entries.forEach(function (en) {
+        nets.forEach(function (n) { if (n.canvas === en.target) n.resize(en.contentRect); });
+      });
+    });
+    nets.forEach(function (n) { ro.observe(n.canvas); });
   } else {
+    requestAnimationFrame(function () { nets.forEach(function (n) { n.resize(); }); });
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () { nets.forEach(function (n) { n.resize(); }); }, 150);
+    });
+  }
+
+  if (!reduced) {
     (function loop() {
       if (!document.hidden) nets.forEach(function (n) { n.draw(SPEED); });
       requestAnimationFrame(loop);
