@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.className += ' js';</script>
 <title>Advanced Rotary Root Canal Treatment in Dumka | Asha Dental Clinic</title>
 <meta name="description" content="Asha Dental Clinic, Dumka – rated 5.0★ on Google. Painless, single-sitting rotary root canal treatment (RCT), dental implants, teeth whitening &amp; cosmetic dentistry by Dr. Prasenjeet. Call 083404 03072 to book.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Asha Dental Clinic Dumka">
-<meta name="theme-color" content="#0E4F4A">
+<meta name="theme-color" content="#1E3A5F">
 <link rel="canonical" href="https://ashadentaldumka.github.io/">
 <link rel="alternate" hreflang="en-IN" href="https://ashadentaldumka.github.io/">
 
@@ -99,21 +100,23 @@
 <style>
 /* ============ Tokens ============ */
 :root{
-  --ink:#12201F;
-  --ink-strong:#0B2B28;
-  --muted:#3A4D4A;
-  --muted-2:#4A5D5A;
-  --teal:#0E4F4A;
-  --teal-dark:#0B3B37;
-  --teal-darker:#0B2B28;
-  --mint:#E4F1EC;
-  --mint-2:#F2F7F5;
-  --line:#E3EAE7;
-  --ground:#F7F9F7;
+  --ink:#0F172A;
+  --ink-strong:#1E3A5F;
+  --muted:#475569;
+  --muted-2:#0369A1;
+  --teal:#1E3A5F;
+  --teal-dark:#1A3354;
+  --teal-darker:#0F2440;
+  --mint:#E0F2FE;
+  --mint-2:#F0F9FF;
+  --line:#E2E8F0;
+  --ground:#F8FAFC;
   --white:#FFFFFF;
-  --on-dark:#C4DAD4;
-  --accent:#F2B544;
+  --on-dark:#CBD5E1;
+  --accent:#38BDF8;
   --radius:24px;
+  --header-h:76px; /* header bar height, without its 1px bottom border */
+  --topbar-h:40px; /* top bar height, without its 1px bottom border */
   --display:'Bricolage Grotesque', system-ui, sans-serif;
   --body:'DM Sans', system-ui, sans-serif;
 }
@@ -124,7 +127,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{margin:0;font-family:var(--body);color:var(--ink);background:var(--ground);line-height:1.5;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:var(--teal)}
-a:hover{color:#08332F}
+a:hover{color:#0F2440}
 h1,h2,h3{font-family:var(--display);color:var(--ink-strong);margin:0}
 p{margin:0}
 .container{max-width:1180px;margin:0 auto;padding:0 24px}
@@ -138,18 +141,19 @@ p{margin:0}
 /* ============ Buttons ============ */
 .btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:17px;padding:15px 26px;border-radius:999px;text-decoration:none;border:1.5px solid var(--teal);cursor:pointer;transition:transform .15s ease,background .15s ease}
 .btn:hover{transform:translateY(-1px)}
-.btn-primary{background:var(--teal);color:var(--white)}
-.btn-primary:hover{background:#08332F;color:var(--white)}
+.btn-primary{background:linear-gradient(135deg,var(--teal),#0284C7);border-color:transparent;color:var(--white)}
+.btn-primary:hover{background:linear-gradient(135deg,var(--teal-darker),#0369A1);color:var(--white)}
 .btn-outline{background:var(--white);color:var(--teal)}
 
 /* ============ Top bar ============ */
-.topbar{background:var(--teal-dark);color:#DDEBE7;font-size:14px}
-.topbar .container{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:center;padding-top:10px;padding-bottom:10px}
+.topbar{position:relative;z-index:51;background:transparent;color:rgba(255,255,255,.85);font-size:14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.topbar .container{display:flex;gap:16px;justify-content:space-between;align-items:center;height:var(--topbar-h);white-space:nowrap}
 .topbar a{color:var(--accent);font-weight:600;text-decoration:none}
 
 /* ============ Header ============ */
 .header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.header .container{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px}
+.header{transition:background-color .25s ease,border-color .25s ease}
+.header .container{display:flex;align-items:center;justify-content:space-between;gap:16px;height:var(--header-h)}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
 .brand-mark{width:44px;height:44px;border-radius:12px;background:var(--teal);display:flex;align-items:center;justify-content:center}
 .brand-mark svg{width:24px;height:24px;stroke:#fff;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
@@ -159,6 +163,12 @@ p{margin:0}
 .nav{display:flex;align-items:center;gap:24px;font-size:15px;font-weight:500}
 .nav a{text-decoration:none;padding:10px 0}
 .nav .btn{padding:12px 20px;font-size:15px}
+/* Blinking "available" dot in the header booking button */
+.pulse-dot{position:relative;width:8px;height:8px;border-radius:50%;background:#22C55E;flex:none;animation:dot-colors 4.8s linear infinite,dot-blink 1.2s ease-in-out infinite}
+.pulse-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;animation:dot-ring 1.2s ease-out infinite}
+@keyframes dot-colors{0%,100%{background:#22C55E}20%{background:#38BDF8}40%{background:#A78BFA}60%{background:#F472B6}80%{background:#F2B544}}
+@keyframes dot-blink{50%{opacity:.45}}
+@keyframes dot-ring{from{transform:scale(1);opacity:.7}to{transform:scale(2.8);opacity:0}}
 .nav-toggle{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:var(--white);cursor:pointer;align-items:center;justify-content:center}
 .nav-toggle svg{width:22px;height:22px;stroke:var(--ink);stroke-width:2;fill:none;stroke-linecap:round}
 
@@ -171,6 +181,7 @@ p{margin:0}
 .hero{max-width:1180px;margin:0 auto;padding:72px 24px 64px;display:flex;flex-wrap:wrap;gap:48px;align-items:center}
 .hero-copy{flex:1 1 480px;min-width:0;display:flex;flex-direction:column;gap:24px}
 .pill{align-self:flex-start;background:var(--mint);color:var(--teal);font-size:14px;font-weight:600;padding:8px 14px;border-radius:999px}
+.hero h1 .hl{color:#0284C7}
 .hero h1{font-weight:800;font-size:clamp(34px,4.6vw,58px);line-height:1.02;letter-spacing:-.02em}
 .hero-lead{font-size:19px;line-height:1.6;color:var(--muted);max-width:540px}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
@@ -178,9 +189,78 @@ p{margin:0}
 .checks li{display:flex;align-items:center;gap:8px}
 .checks .icon{color:var(--teal)}
 .hero-media{flex:1 1 420px;min-width:0;position:relative}
-.photo-ph{aspect-ratio:4/5;max-height:560px;width:100%;border-radius:28px;background:#DCEAE5;border:2px dashed #9DBDB3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#3A5E57;text-align:center;padding:24px;font-weight:600}
+/* Dark photo hero */
+/* hero slides up behind the top bar and header (each has a 1px bottom border) */
+.hero-dark{margin-top:calc(-2px - var(--topbar-h) - var(--header-h));padding-top:calc(2px + var(--topbar-h) + var(--header-h))}
+/* See-through header while it sits on the hero; turns solid once the page scrolls */
+.js .header.is-top{background:transparent;border-bottom-color:transparent;backdrop-filter:none}
+.js .header.is-top .brand{color:var(--white)}
+.js .header.is-top .brand-sub{color:var(--accent)}
+.js .header.is-top .brand-mark{background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.js .header.is-top .nav-toggle{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25)}
+.js .header.is-top .nav-toggle svg{stroke:var(--white)}
+@media (min-width: 901px){
+  .js .header.is-top .nav a:not(.btn){color:var(--white)}
+  .js .header.is-top .nav .btn-primary{background:var(--white);color:var(--teal);border-color:var(--white)}
+}
+.hero-dark{background:linear-gradient(135deg,rgba(15,23,42,.88),rgba(30,58,95,.74),rgba(15,23,42,.92)),url(images/clinic-interior.webp) center/cover no-repeat var(--teal-darker)}
+.hero-dark > .hero{padding-bottom:128px}
+.hero-dark + .services{border-top:0}
+.hero-dark::after{content:"";position:absolute;left:0;right:0;bottom:0;height:96px;background:linear-gradient(to top,var(--white),transparent);pointer-events:none}
+.hero-dark h1{color:var(--white)}
+.hero-dark h1 .hl{color:var(--accent)}
+.pill-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;animation:soft-pulse 2s cubic-bezier(.4,0,.6,1) infinite}
+@keyframes soft-pulse{50%{opacity:.4}}
+/* Hero entrance: each line fades in and rises, one after another */
+@media (prefers-reduced-motion: no-preference){
+  .hero-copy > *,.hero-media .rating-card{animation:hero-in .8s cubic-bezier(.2,.7,.2,1) both}
+  .hero-copy > :nth-child(1){animation-delay:.05s}
+  .hero-copy > :nth-child(2){animation-delay:.15s}
+  .hero-copy > :nth-child(3){animation-delay:.25s}
+  .hero-copy > :nth-child(4){animation-delay:.35s}
+  .hero-copy > :nth-child(5){animation-delay:.45s}
+  .hero-media .rating-card{animation-delay:.6s}
+  /* The largest item on screen only rises (no fade), so page-speed tools still see it painted
+     straight away: the photo on wide screens, the intro paragraph on phones and tablets */
+  .hero-photo{animation:hero-photo-rise 1s cubic-bezier(.2,.7,.2,1) .1s both}
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 900px){
+  .hero-copy > .hero-lead{animation-name:hero-rise}
+}
+@keyframes hero-in{from{opacity:0;transform:translateY(30px)}}
+@keyframes hero-rise{from{transform:translateY(30px)}}
+@keyframes hero-photo-rise{from{transform:translateY(40px) scale(.96)}}
+/* Typing phrase gets its own line so changing its length never moves the rest of the hero */
+.hero h1 .hl{display:block;white-space:nowrap;min-height:1.02em}
+.hl .type::before{content:attr(data-text)}
+.hl .type::after{content:"";display:inline-block;width:.07em;height:.85em;margin-left:.06em;vertical-align:-.04em;background:currentColor;animation:caret 1s steps(1) infinite}
+@keyframes caret{50%{opacity:0}}
+/* Rest of the heading types in once: every letter keeps its place and is only made visible */
+@media (prefers-reduced-motion: no-preference){
+  .js .hero h1 .tail{visibility:hidden}
+  .js .hero h1 .tail .on{visibility:visible}
+}
+.hero h1 .tail .cur{position:relative}
+.hero h1 .tail .cur::after{content:"";position:absolute;right:-.1em;top:.12em;bottom:.08em;width:.07em;background:var(--white);animation:caret 1s steps(1) infinite}
+.hero h1.tail-typing .hl .type::after{display:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hero-dark .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:var(--white);backdrop-filter:blur(8px)}
+.hero-dark .hero-lead{color:rgba(255,255,255,.82)}
+.hero-dark .btn-primary{background:var(--white);color:var(--teal);border-color:var(--white)}
+.hero-dark .btn-primary:hover{background:var(--mint);color:var(--teal)}
+.hero-dark .btn-sky{background:#0EA5E9;border-color:#0EA5E9;color:var(--teal-darker)}
+.hero-dark .btn-sky:hover{background:var(--accent);border-color:var(--accent)}
+.hero-dark .btn-glass{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);color:var(--white);backdrop-filter:blur(8px)}
+.hero-dark .btn-glass:hover{background:rgba(255,255,255,.18)}
+.hero-dark .checks{color:rgba(255,255,255,.85)}
+.hero-dark .checks .icon{color:var(--accent)}
+.hero-dark .rating-card{bottom:-30px;box-shadow:0 16px 36px rgba(2,8,23,.3)}
+.hero-photo{position:relative;border-radius:28px;overflow:hidden;border:6px solid rgba(255,255,255,.14);box-shadow:0 30px 60px rgba(2,8,23,.45)}
+.hero-photo img{width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;object-position:0% 40%}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.35),rgba(30,58,95,.12),rgba(15,23,42,.45));pointer-events:none}
+.photo-ph{aspect-ratio:4/5;max-height:560px;width:100%;border-radius:28px;background:#E0F2FE;border:2px dashed #7DD3FC;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#1E3A5F;text-align:center;padding:24px;font-weight:600}
 .photo-ph svg{width:40px;height:40px;stroke:currentColor;stroke-width:1.6;fill:none}
-.rating-card{position:absolute;left:-12px;bottom:28px;background:var(--white);border-radius:18px;padding:16px 20px;box-shadow:0 12px 32px rgba(11,59,55,.14);display:flex;gap:14px;align-items:center}
+.rating-card{position:absolute;left:-12px;bottom:28px;background:var(--white);border-radius:18px;padding:16px 20px;box-shadow:0 12px 32px rgba(30,58,95,.14);display:flex;gap:14px;align-items:center}
 .rating-num{width:48px;height:48px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:17px;color:var(--ink-strong)}
 .rating-card strong{display:block;font-size:16px}
 .rating-card span.sub{font-size:14px;color:var(--muted-2)}
@@ -192,21 +272,23 @@ p{margin:0}
 .section-head h2{max-width:560px}
 .section-head p{font-size:17px;line-height:1.6;color:var(--muted);max-width:420px}
 .featured-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:20px}
-.card-featured{background:var(--teal);color:var(--white);border-radius:var(--radius);padding:32px;display:flex;flex-direction:column;gap:14px;min-height:240px}
+.card-featured{background:linear-gradient(135deg,var(--teal-darker),#2D5A8A);color:var(--white);border-radius:var(--radius);padding:32px;display:flex;flex-direction:column;gap:14px;min-height:240px}
 .card-featured .tag{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
 .card-featured h3{color:var(--white);font-size:28px;font-weight:700}
-.card-featured p{font-size:16px;line-height:1.6;color:#CFE3DD}
-.card-featured a{margin-top:auto;color:var(--white);font-weight:600;display:inline-flex;gap:8px;align-items:center;padding:8px 0}
+.card-featured p{font-size:16px;line-height:1.6;color:#CBD5E1}
+.card-featured a{margin-top:auto;align-self:flex-start;display:inline-flex;gap:10px;align-items:center;padding:13px 24px;border-radius:999px;background:var(--white);color:var(--teal);font-weight:600;font-size:16px;text-decoration:none;box-shadow:0 8px 20px rgba(2,8,23,.25);transition:background .2s ease,color .2s ease,transform .15s ease}
+.card-featured a:hover{background:var(--accent);color:var(--teal-darker);transform:translateY(-1px)}
+.card-featured a .icon{transition:transform .2s ease}
+.card-featured a:hover .icon{transform:translateX(3px)}
 .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px}
-.card-service{background:var(--mint-2);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:10px;transition:transform .2s ease,box-shadow .2s ease}
-.card-service:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(11,59,55,.08)}
+.card-service{background:var(--mint-2);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:10px}
 .card-service h3{font-size:21px;font-weight:700}
 .card-service p{font-size:15px;line-height:1.6;color:var(--muted)}
 
 /* ============ About ============ */
 .about{max-width:1180px;margin:0 auto;padding:96px 24px;display:flex;flex-wrap:wrap;gap:56px;align-items:center}
 .about-media{flex:1 1 340px;min-width:0}
-.portrait-ph{aspect-ratio:1/1;width:100%;max-width:440px;border-radius:50%;background:#DCEAE5;border:2px dashed #9DBDB3;display:flex;align-items:center;justify-content:center;text-align:center;color:#3A5E57;font-weight:600;padding:40px}
+.portrait-ph{aspect-ratio:1/1;width:100%;max-width:440px;border-radius:50%;background:#E0F2FE;border:2px dashed #7DD3FC;display:flex;align-items:center;justify-content:center;text-align:center;color:#1E3A5F;font-weight:600;padding:40px}
 .about-copy{flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:20px}
 .about-copy > p{font-size:17px;line-height:1.7;color:var(--muted)}
 .mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-top:8px}
@@ -238,21 +320,72 @@ p{margin:0}
 .visit{background:var(--white)}
 .visit .container{padding-top:88px;padding-bottom:88px;display:flex;flex-wrap:wrap;gap:40px}
 .visit-info{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:24px}
+.visit-info .btn{align-self:flex-start}
 .visit-info h2{font-size:clamp(30px,3.4vw,42px);font-weight:800;line-height:1.1}
 .details{margin:0;display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px 20px;font-size:16px}
 .details dt{font-weight:600;color:var(--muted-2)}
 .details dd{margin:0}
+/* Phone number as a tappable tag */
+.tel-tag{display:inline-flex;align-items:center;gap:6px;padding:2px 12px;border-radius:999px;background:var(--mint);border:1px solid #BAE6FD;color:var(--teal);font-weight:600;text-decoration:none;white-space:nowrap;vertical-align:middle;transition:background .2s ease,color .2s ease,border-color .2s ease}
+.tel-tag .icon{width:14px;height:14px}
+.tel-tag:hover{background:var(--teal);border-color:var(--teal);color:var(--white)}
+.topbar .tel-tag{padding:2px 10px;background:rgba(56,189,248,.15);border-color:rgba(56,189,248,.45);color:var(--accent)}
+.topbar .tel-tag:hover{background:var(--accent);border-color:var(--accent);color:var(--teal-darker)}
+.details .tel-tag{padding:8px 16px;font-size:17px}
+.details .tel-tag .icon{width:16px;height:16px}
 .map{width:100%;height:300px;border:0;border-radius:22px;background:var(--mint)}
 .book{flex:1 1 420px;min-width:0;background:var(--mint-2);border-radius:28px;padding:36px;display:flex;flex-direction:column;gap:18px}
 .book h2{font-size:32px;font-weight:800}
 .book > p{font-size:15px;color:var(--muted)}
 .field{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600}
-.field input,.field select{height:48px;border:1px solid #B9CCC6;border-radius:12px;padding:0 14px;background:var(--white);font:inherit;font-size:16px;font-weight:400;color:var(--ink)}
-.field input:focus,.field select:focus{border-color:var(--teal);outline:2px solid var(--mint);outline-offset:0}
+.field input,.field select{height:48px;border:1px solid #CBD5E1;border-radius:12px;padding:0 14px;background:var(--white);font:inherit;font-size:16px;font-weight:400;color:var(--ink)}
+.field textarea{min-height:96px;border:1px solid #CBD5E1;border-radius:12px;padding:12px 14px;background:var(--white);font:inherit;font-size:16px;font-weight:400;line-height:1.5;color:var(--ink);resize:vertical}
+.field .optional{font-weight:400;color:var(--muted)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--teal);outline:2px solid var(--mint);outline-offset:0}
 .row{display:flex;flex-wrap:wrap;gap:14px}
 .row .field{flex:1 1 180px}
-.book button{height:54px;border:0;border-radius:999px;background:var(--teal);color:var(--white);font:inherit;font-size:17px;font-weight:600;cursor:pointer}
-.book button:hover{background:#08332F}
+.field input::placeholder,.field textarea::placeholder{color:#64748B}
+.field select{appearance:none;-webkit-appearance:none;padding-right:44px;cursor:pointer;background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E3A5F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center/20px}
+/* Date picker (the script swaps the native date input for this calendar) */
+.date-wrap{position:relative}
+.date-wrap input{width:100%;padding-right:44px}
+.js .date-wrap input{cursor:pointer}
+.cal-icon{display:none;position:absolute;right:14px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--teal);pointer-events:none}
+.js .cal-icon{display:block}
+.cal{position:absolute;z-index:70;top:calc(100% + 8px);right:0;width:300px;max-width:calc(100vw - 32px);background:var(--white);border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 44px rgba(15,23,42,.18);padding:14px;font-weight:400}
+.cal[hidden]{display:none}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.cal-title{font-family:var(--display);font-weight:700;font-size:17px;color:var(--ink-strong)}
+.cal-nav{width:36px;height:36px;border:0;border-radius:50%;background:var(--mint);color:var(--teal);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.cal-nav:hover{background:#BAE6FD}
+.cal-nav:disabled{opacity:.35;cursor:default;background:var(--mint)}
+.cal-week,.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal-week span{font-size:12px;font-weight:600;color:var(--muted);padding:4px 0}
+.cal-grid button{aspect-ratio:1;border:0;border-radius:50%;background:transparent;font:inherit;font-size:15px;color:var(--ink);cursor:pointer}
+.cal-grid button:hover{background:var(--mint)}
+.cal-grid button[aria-current="date"]{box-shadow:inset 0 0 0 1.5px var(--accent);font-weight:700;color:var(--teal)}
+.cal-grid button[aria-pressed="true"]{background:linear-gradient(135deg,var(--teal),#0284C7);color:var(--white);font-weight:700;box-shadow:none}
+.cal-grid button:disabled{color:#CBD5E1;cursor:default;background:transparent}
+.cal-foot{display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.cal-foot button{border:0;background:none;font:inherit;font-size:14px;font-weight:600;color:#0369A1;cursor:pointer;padding:6px 10px;border-radius:8px}
+.cal-foot button:hover{background:var(--mint)}
+.book button[type="submit"]{height:54px;border:0;border-radius:999px;background:linear-gradient(135deg,var(--teal),#0284C7);color:var(--white);font:inherit;font-size:17px;font-weight:600;cursor:pointer}
+.book button[type="submit"]:hover{background:linear-gradient(135deg,var(--teal-darker),#0369A1)}
+/* Booking dialog */
+.book-dialog{width:min(560px,calc(100vw - 24px));max-width:none;max-height:calc(100dvh - 24px);padding:0;border:0;border-radius:28px;background:transparent;overflow:auto;overscroll-behavior:contain}
+.book-dialog::backdrop{background:rgba(15,23,42,.6);backdrop-filter:blur(4px)}
+.book-dialog[open]{animation:dialog-in .25s ease}
+.book-dialog[open]::backdrop{animation:fade-in .25s ease}
+@keyframes dialog-in{from{opacity:0;transform:translateY(16px) scale(.98)}}
+@keyframes fade-in{from{opacity:0}}
+.book-dialog .book{background:var(--white)}
+.book-dialog .book h2{padding-right:48px}
+.dialog-close{position:absolute;top:18px;right:18px;z-index:2;width:40px;height:40px;border:0;border-radius:50%;background:var(--mint);color:var(--teal);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.dialog-close:hover{background:#BAE6FD}
+.dialog-close .icon{width:20px;height:20px}
+.modal-open{overflow:hidden}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-privacy{font-size:13px;color:var(--muted);text-align:center;margin-top:-6px}
 .form-note{font-size:14px;color:var(--teal);font-weight:600;min-height:1.2em}
 
 /* ============ Footer ============ */
@@ -262,22 +395,32 @@ p{margin:0}
 .footer a{color:var(--white);font-weight:600}
 
 /* ============ Floating call button (mobile) ============ */
-.fab{position:fixed;right:18px;bottom:18px;z-index:60;width:58px;height:58px;border-radius:50%;background:var(--teal);color:var(--white);display:none;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(11,59,55,.3)}
+.fab{position:fixed;right:18px;bottom:18px;z-index:60;width:58px;height:58px;border-radius:50%;background:var(--teal);color:var(--white);display:none;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(30,58,95,.3)}
 .fab svg{width:24px;height:24px}
 
-/* ============ Reveal on scroll ============ */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
-.reveal.in{opacity:1;transform:none}
+/* ============ Scroll animations ============ */
+/* Hidden states only apply when the script runs, so the page still shows without it */
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.from-left{transform:translateX(-48px)}
+.js .reveal.from-right{transform:translateX(48px)}
+.js .reveal.zoom{transform:scale(.94)}
+.js .reveal.in{opacity:1;transform:none}
+/* Section titles rise in word by word */
+.split .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em;margin-bottom:-.12em}
+.split .w > span{display:inline-block;transform:translateY(110%);transition:transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i) * 70ms)}
+.split.in .w > span{transform:none}
+.about,.visit{overflow-x:clip}
 
 /* ============ Responsive ============ */
 
 /* ============ Google reviews ============ */
 .reviews{background:var(--mint-2)}
 .reviews .container{padding-top:80px;padding-bottom:80px}
-.g-card{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:36px;box-shadow:0 12px 32px rgba(11,59,55,.08)}
+.g-card{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:36px;box-shadow:0 12px 32px rgba(30,58,95,.08)}
 .g-left{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
 .g-logo{width:56px;height:56px;flex:none}
 .g-score{font-family:var(--display);font-weight:800;font-size:56px;line-height:1;color:var(--ink-strong)}
+.star{color:#FBBC04}
 .g-stars{color:#FBBC04;font-size:24px;letter-spacing:2px;line-height:1}
 .g-meta{display:flex;flex-direction:column;gap:6px}
 .g-meta span{color:var(--muted-2);font-size:15px}
@@ -288,6 +431,30 @@ p{margin:0}
 .faq details{border-bottom:1px solid var(--line);padding:20px 0}
 .faq summary{cursor:pointer;font-weight:600;font-size:18px;color:var(--ink-strong)}
 .faq details p{margin-top:12px;color:var(--muted);line-height:1.6}
+
+/* ============ Hover effects ============ */
+.card-service{position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,background-color .3s ease}
+.card-service::before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,var(--teal),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.card-service:hover{transform:translateY(-6px);background:var(--white);box-shadow:0 18px 36px rgba(30,58,95,.12)}
+.card-service:hover::before{transform:scaleX(1)}
+.card-service h3{transition:color .3s ease}
+.card-service:hover h3{color:#0369A1}
+.card-featured{position:relative;overflow:hidden;transition:transform .35s ease,box-shadow .35s ease}
+.card-featured::after{content:"";position:absolute;top:0;left:0;width:45%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.16),transparent);transform:translateX(-160%) skewX(-18deg);transition:transform .8s ease;pointer-events:none}
+.card-featured:hover{transform:translateY(-6px);box-shadow:0 26px 50px rgba(15,23,42,.28)}
+.card-featured:hover::after{transform:translateX(330%) skewX(-18deg)}
+.mini{transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+.mini:hover{transform:translateY(-4px);border-color:#7DD3FC;box-shadow:0 14px 28px rgba(30,58,95,.1)}
+.stat{transition:transform .3s ease,background-color .3s ease,border-color .3s ease}
+.stat:hover{transform:translateY(-4px);background:rgba(255,255,255,.13);border-color:var(--accent)}
+.reasons .reason-icon{transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
+.reasons li:hover .reason-icon{transform:scale(1.12) rotate(-8deg)}
+.g-card{transition:transform .3s ease,box-shadow .3s ease}
+.g-card:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(30,58,95,.14)}
+.faq summary{transition:color .2s ease}
+.faq summary:hover{color:#0369A1}
+.faq details[open] p{animation:fade-up .45s ease}
+@keyframes fade-up{from{opacity:0;transform:translateY(8px)}}
 @media (max-width: 900px){
   .nav-toggle{display:inline-flex}
   .nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--white);border-bottom:1px solid var(--line);padding:8px 24px 20px;display:none}
@@ -297,6 +464,8 @@ p{margin:0}
   .fab{display:flex}
 }
 @media (max-width: 560px){
+  .hide-sm{display:none}
+  .js .reveal.from-left:not(.in),.js .reveal.from-right:not(.in){transform:translateY(28px)}
   .hero{padding-top:48px}
   .rating-card{left:12px}
   .mini-grid{grid-template-columns:1fr}
@@ -306,8 +475,16 @@ p{margin:0}
 }
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
-  .reveal{opacity:1;transform:none;transition:none}
-  .btn,.card-service{transition:none}
+  .js .reveal,.js .reveal.from-left,.js .reveal.from-right,.js .reveal.zoom{opacity:1;transform:none;transition:none}
+  .split .w > span{transform:none;transition:none}
+  .btn,.card-service,.card-featured a,.card-featured a .icon,.tel-tag{transition:none}
+  .card-featured,.mini,.stat,.g-card,.reasons li,.reasons .reason-icon{transition:none}
+  .card-service:hover,.card-featured:hover,.mini:hover,.stat:hover,.g-card:hover,.reasons li:hover,.reasons li:hover .reason-icon{transform:none}
+  .card-featured::after{display:none}
+  .faq details[open] p{animation:none}
+  .pulse-dot,.pill-dot{animation:none}
+  .pulse-dot::after{display:none}
+  .book-dialog[open],.book-dialog[open]::backdrop{animation:none}
 }
 </style>
 </head>
@@ -317,13 +494,13 @@ p{margin:0}
 <!-- Top bar -->
 <div class="topbar">
   <div class="container">
-    <a href="https://www.google.com/maps?cid=6839892958022701944" target="_blank" rel="noopener" style="color:#DDEBE7;font-weight:500">★ 5.0 on Google · 91+ happy reviews</a>
-    <span>Toothache? Call <a href="tel:+918340403072">083404 03072</a></span>
+    <a href="https://www.google.com/maps?cid=6839892958022701944" target="_blank" rel="noopener" style="color:#E0F2FE;font-weight:500"><span class="star" aria-hidden="true">★</span> 5.0 on Google<span class="hide-sm"> · 91+ happy reviews</span></a>
+    <span><span class="hide-sm">Toothache? </span>Call <a class="tel-tag" href="tel:+918340403072"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>083404 03072</a></span>
   </div>
 </div>
 
 <!-- Header -->
-<header class="header">
+<header class="header is-top">
   <div class="container">
     <a class="brand" href="#top">
       <span class="brand-mark" aria-hidden="true">
@@ -343,7 +520,7 @@ p{margin:0}
       <a href="#why">Why us</a>
       <a href="#reviews">Reviews</a>
       <a href="#visit">Visit</a>
-      <a class="btn btn-primary" href="#appointment">Book appointment</a>
+      <a class="btn btn-primary" href="#appointment"><span class="pulse-dot" aria-hidden="true"></span>Book appointment</a>
     </nav>
   </div>
 </header>
@@ -351,22 +528,22 @@ p{margin:0}
 <main id="main">
 
 <!-- Hero -->
-<div class="has-network" id="top">
-  <canvas class="network" data-theme="light" aria-hidden="true"></canvas>
+<div class="has-network hero-dark" id="top">
+  <canvas class="network" data-theme="dark" aria-hidden="true"></canvas>
   <section class="hero">
     <div class="hero-copy">
-      <span class="pill">Root Canal Treatment &amp; Dental Implants</span>
-      <h1>Advanced Rotary Root Canal Treatment &amp; Dental Clinic in Dumka</h1>
+      <span class="pill"><span class="pill-dot" aria-hidden="true"></span>Root Canal Treatment &amp; Dental Implants</span>
+      <h1>Advanced <span class="hl">Rotary Root Canal</span> <span class="tail">Treatment &amp; Dental Clinic in Dumka</span></h1>
       <p class="hero-lead">Asha Dental Clinic provides root canal treatment, dental implants, tooth pain treatment and comprehensive dental care in Dumka, Jharkhand. Led by Dr. Prasenjeet Dey B.D.S (Dental surgeon, RGUHS Bangalore), we focus on modern dental techniques, patient comfort, hygiene and clear treatment explanations.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#appointment">Book an Appointment
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a class="btn btn-outline" href="tel:+918340403072">
+        <a class="btn btn-sky" href="tel:+918340403072">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
           Call the Clinic
         </a>
-        <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&amp;query=Asha+Dental+Clinic+Dumka+Dr+Prasenjeet+RCT+Implant+Centre" target="_blank" rel="noopener">
+        <a class="btn btn-glass" href="https://www.google.com/maps/search/?api=1&amp;query=Asha+Dental+Clinic+Dumka+Dr+Prasenjeet+RCT+Implant+Centre" target="_blank" rel="noopener">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Get Directions
         </a>
@@ -378,10 +555,12 @@ p{margin:0}
       </ul>
     </div>
     <div class="hero-media">
-      <img src="images/dr-prasenjeet-treating-patient.webp" alt="Dr. Prasenjeet treating a patient at Asha Dental Clinic, Dumka" width="1031" height="580" fetchpriority="high" style="border-radius:28px;aspect-ratio:4/5;max-height:560px;object-fit:cover;object-position:5% center;width:100%">
+      <div class="hero-photo">
+        <img src="images/dr-prasenjeet-treating-patient.webp" alt="Dr. Prasenjeet treating a patient at Asha Dental Clinic, Dumka" width="1031" height="580" fetchpriority="high">
+      </div>
       <div class="rating-card">
         <span class="rating-num">5.0</span>
-        <span><strong>★★★★★ Google rating</strong><span class="sub">91+ happy reviews</span></span>
+        <span><strong><span class="star" role="img" aria-label="5 out of 5 stars">★★★★★</span> Google rating</strong><span class="sub">91+ happy reviews</span></span>
       </div>
     </div>
   </section>
@@ -437,10 +616,10 @@ p{margin:0}
 
 <!-- About -->
 <section class="about" id="about">
-  <div class="about-media reveal">
+  <div class="about-media reveal from-left">
     <img src="images/clinic-interior.webp" alt="Modern dental treatment room" width="1376" height="768" loading="lazy" style="border-radius:28px;aspect-ratio:1/1;object-fit:cover;object-position:40% center;max-width:440px;width:100%">
   </div>
-  <div class="about-copy reveal">
+  <div class="about-copy reveal from-right">
     <span class="eyebrow">About the clinic</span>
     <h2 class="section-title">Led by Dr. Prasenjeet</h2>
     <p>Asha Dental Clinic in Dumka is a dedicated dental practice specialising in Root Canal Treatment (RCT) and Dental Implants. We combine modern dental techniques with a patient-centred approach, ensuring every visit is comfortable, safe and effective.</p>
@@ -484,7 +663,7 @@ p{margin:0}
 <!-- Google reviews -->
 <section class="reviews" id="reviews" aria-labelledby="reviews-title">
   <div class="container">
-    <div class="g-card reveal">
+    <div class="g-card reveal zoom">
       <div class="g-left">
         <svg class="g-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>
         <span class="g-score">5.0</span>
@@ -509,7 +688,7 @@ p{margin:0}
     <details><summary>Is root canal treatment painful?</summary><p>No. We offer painless RCT in Dumka: treatment is done under local anaesthesia with advanced rotary instruments, so most patients feel little or no pain during the procedure. It relieves the toothache caused by the infection.</p></details>
     <details><summary>Can root canal treatment be done in a single sitting?</summary><p>Yes. Asha Dental Clinic offers single-sitting RCT in Dumka using advanced rotary instruments. Whether your tooth can be treated in one visit depends on the infection and the tooth, which Dr. Prasenjeet checks before treatment.</p></details>
     <details><summary>Who is a good candidate for dental implants?</summary><p>Most adults with one or more missing teeth and healthy gums can get dental implants. Dr. Prasenjeet checks your bone and gum health at a consultation before planning treatment.</p></details>
-    <details><summary>How do I book an appointment at Asha Dental Clinic Dumka?</summary><p>Call <a href="tel:+918340403072">083404 03072</a>, or fill in the <a href="#appointment">booking form</a> to send your request on WhatsApp.</p></details>
+    <details><summary>How do I book an appointment at Asha Dental Clinic Dumka?</summary><p>Call <a class="tel-tag" href="tel:+918340403072"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>083404 03072</a>, or fill in the <a href="#appointment">booking form</a> to send your request on WhatsApp.</p></details>
     <details><summary>Where is Asha Dental Clinic located?</summary><p>We are in Dumka, Jharkhand. <a href="https://www.google.com/maps?cid=6839892958022701944" target="_blank" rel="noopener">Open in Google Maps</a> for directions. Open Mon – Sat 9 am – 9 pm, Sunday 9 am – 2 pm.</p></details>
   </div>
 </section>
@@ -517,15 +696,15 @@ p{margin:0}
 <!-- Visit & booking -->
 <section class="visit" id="visit">
   <div class="container">
-    <div class="visit-info reveal">
+    <div class="visit-info reveal from-left">
       <h2>Visit the clinic</h2>
       <dl class="details">
         <dt>Clinic</dt>
         <dd><address style="font-style:normal">Asha Dental Clinic Dumka<br>(Dr. Prasenjeet, RCT &amp; Implant Centre)<br>Dumka, Jharkhand</address></dd>
         <dt>Phone</dt>
-        <dd><a href="tel:+918340403072"><strong>083404 03072</strong></a></dd>
+        <dd><a class="tel-tag" href="tel:+918340403072"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>083404 03072</a></dd>
         <dt>Hours</dt>
-        <dd><table class="hours" style="border-collapse:collapse;font-size:15px">
+        <dd><table class="hours" style="border-collapse:collapse;font-size:15px;font-weight:600;color:var(--ink-strong)">
           <tr><td style="padding:2px 16px 2px 0">Mon – Sat</td><td>9 am – 9 pm</td></tr>
           <tr><td style="padding:2px 16px 2px 0">Sunday</td><td>9 am – 2 pm</td></tr>
         </table></dd>
@@ -533,17 +712,21 @@ p{margin:0}
       <iframe class="map" width="600" height="320" title="Map to Asha Dental Clinic Dumka"
         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d27792.188327099117!2d87.22240146889196!3d24.274147893947386!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f0b7394e23b24d%3A0x5eec2e67f0a39378!2sAsha%20Dental%20Clinic%20Dumka%20(Dr%20Prasenjeet%2C%20RCT%20%26%20Implant%20Centre)!5e1!3m2!1sen!2sin!4v1791828299068!5m2!1sen!2sin"
         allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-      <a href="https://www.google.com/maps/search/?api=1&query=Asha+Dental+Clinic+Dumka+Dr+Prasenjeet+RCT+Implant+Centre" target="_blank" rel="noopener"><strong>Get directions →</strong></a>
+      <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Asha+Dental+Clinic+Dumka+Dr+Prasenjeet+RCT+Implant+Centre" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Get directions
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
 
-    <form class="book reveal" id="appointment" novalidate>
-      <h2>Book an appointment</h2>
-      <p>Fill in your details and send them to us on WhatsApp. Or call <a href="tel:+918340403072">083404 03072</a>.</p>
+    <form class="book reveal from-right" id="appointment" novalidate>
+      <h2 id="book-title">Book an appointment</h2>
+      <p>Fill in your details and send them to us on WhatsApp. Or call <a class="tel-tag" href="tel:+918340403072"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>083404 03072</a>.</p>
       <label class="field">Your name
-        <input type="text" name="name" autocomplete="name" required>
+        <input type="text" name="name" autocomplete="name" placeholder="Enter your full name" required>
       </label>
       <label class="field">Mobile number
-        <input type="tel" name="phone" autocomplete="tel" placeholder="+91" inputmode="tel" required>
+        <input type="tel" name="phone" autocomplete="tel" placeholder="10-digit mobile number" inputmode="tel" required>
       </label>
       <div class="row">
         <label class="field">Treatment
@@ -556,11 +739,21 @@ p{margin:0}
             <option>Cosmetic Dentistry</option>
           </select>
         </label>
-        <label class="field">Preferred date
-          <input type="date" name="date" id="date">
-        </label>
+        <div class="field">
+          <label for="date">Preferred date</label>
+          <div class="date-wrap">
+            <input type="date" name="date" id="date">
+            <svg class="icon cal-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+        </div>
       </div>
+      <label class="field">
+        <span>Additional message <span class="optional">(optional)</span></span>
+        <textarea name="message" rows="3" maxlength="500" placeholder="Describe your problem, e.g. tooth pain on the lower left side for 3 days"></textarea>
+      </label>
+      <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
       <button type="submit">Request appointment</button>
+      <p class="form-privacy">Your details are only used to arrange your appointment.</p>
       <p class="form-note" role="status" aria-live="polite"></p>
     </form>
   </div>
@@ -581,18 +774,36 @@ p{margin:0}
   <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
 </a>
 
+<!-- Booking dialog: the booking form moves in here while it is open -->
+<dialog class="book-dialog" id="book-dialog" aria-labelledby="book-title">
+  <button type="button" class="dialog-close" aria-label="Close booking form">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+</dialog>
+
 <script>
 (function () {
   'use strict';
 
   var CLINIC_WHATSAPP = '918340403072'; // country code + number, no "+" or spaces
+  // Google Apps Script web-app URL that saves bookings to the clinic's Google Sheet
+  // (ends in /exec; see README). Leave empty to only send bookings on WhatsApp.
+  var BOOKING_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwwqcbH7OifnarbbB6wvyfNzeHjlWp-kL97PHK5Z44JVY2IdZtEz2CGaQbP6J53RJAGGQ/exec';
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Mobile menu ---------- */
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('nav');
+  var header = document.querySelector('.header');
+  function setHeader() {
+    header.classList.toggle('is-top', window.scrollY < 10 && !nav.classList.contains('open'));
+  }
+  setHeader();
+  window.addEventListener('scroll', setHeader, { passive: true });
+
   toggle.addEventListener('click', function () {
     var open = nav.classList.toggle('open');
+    setHeader();
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   });
@@ -600,6 +811,7 @@ p{margin:0}
     if (e.target.closest('a')) {
       nav.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
+      setHeader();
     }
   });
 
@@ -609,10 +821,125 @@ p{margin:0}
     a.addEventListener('click', function () { serviceSelect.value = a.getAttribute('data-service'); });
   });
 
-  /* ---------- Date: no past dates ---------- */
+  /* ---------- Date picker ---------- */
+  // Replaces the browser's date input with a calendar in the site's style.
+  // Past dates are disabled; the chosen date reads like "Tue, 21 Oct 2026".
   var date = document.getElementById('date');
-  var today = new Date();
-  date.min = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+  var dateForm = date.form;
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  function fmt(d) { return DAYS[d.getDay()].slice(0, 3) + ', ' + d.getDate() + ' ' + MONTHS[d.getMonth()].slice(0, 3) + ' ' + d.getFullYear(); }
+  function monthOf(d) { return new Date(d.getFullYear(), d.getMonth(), 1); }
+
+  date.type = 'text';
+  date.readOnly = true;
+  date.placeholder = 'Select a date';
+  date.setAttribute('aria-haspopup', 'dialog');
+  date.setAttribute('aria-expanded', 'false');
+  date.setAttribute('aria-controls', 'cal');
+
+  var cal = document.createElement('div');
+  cal.className = 'cal'; cal.id = 'cal'; cal.hidden = true;
+  cal.setAttribute('role', 'dialog');
+  cal.setAttribute('aria-label', 'Choose a date');
+  cal.innerHTML =
+    '<div class="cal-head">' +
+      '<button type="button" class="cal-nav" data-step="-1" aria-label="Previous month"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>' +
+      '<span class="cal-title" aria-live="polite"></span>' +
+      '<button type="button" class="cal-nav" data-step="1" aria-label="Next month"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>' +
+    '</div>' +
+    '<div class="cal-week" aria-hidden="true"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>' +
+    '<div class="cal-grid"></div>' +
+    '<div class="cal-foot"><button type="button" class="cal-today">Today</button><button type="button" class="cal-clear">Clear</button></div>';
+  date.parentNode.appendChild(cal);
+  var grid = cal.querySelector('.cal-grid');
+  var calTitle = cal.querySelector('.cal-title');
+  var prevMonth = cal.querySelector('[data-step="-1"]');
+  var selected = null, focusDay = today, view = monthOf(today);
+
+  function renderCal(moveFocus) {
+    calTitle.textContent = MONTHS[view.getMonth()] + ' ' + view.getFullYear();
+    prevMonth.disabled = view <= monthOf(today);
+    grid.textContent = '';
+    var blanks = view.getDay(), days = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+    for (var k = 0; k < blanks; k++) grid.appendChild(document.createElement('span'));
+    for (var n = 1; n <= days; n++) {
+      var day = new Date(view.getFullYear(), view.getMonth(), n), b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = n;
+      b.dataset.time = day.getTime();
+      b.setAttribute('aria-label', DAYS[day.getDay()] + ' ' + n + ' ' + MONTHS[day.getMonth()] + ' ' + day.getFullYear());
+      if (day < today) b.disabled = true;
+      if (+day === +today) b.setAttribute('aria-current', 'date');
+      if (selected && +day === +selected) b.setAttribute('aria-pressed', 'true');
+      b.tabIndex = +day === +focusDay ? 0 : -1;
+      grid.appendChild(b);
+    }
+    if (moveFocus) grid.querySelector('[tabindex="0"]').focus();
+  }
+  function focusOn(d) {
+    focusDay = d < today ? today : d;
+    view = monthOf(focusDay);
+    renderCal(true);
+  }
+  function openCal() {
+    if (!cal.hidden) return;
+    focusDay = selected || today;
+    view = monthOf(focusDay);
+    cal.hidden = false;
+    date.setAttribute('aria-expanded', 'true');
+    renderCal(true);
+    cal.scrollIntoView({ block: 'nearest' });
+  }
+  function closeCal(refocus) {
+    if (cal.hidden) return;
+    cal.hidden = true;
+    date.setAttribute('aria-expanded', 'false');
+    if (refocus) date.focus();
+  }
+  function pick(d) {
+    selected = d;
+    date.value = d ? fmt(d) : '';
+    closeCal(true);
+  }
+
+  date.addEventListener('click', openCal);
+  date.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') { e.preventDefault(); openCal(); }
+  });
+  cal.addEventListener('click', function (e) {
+    var b = e.target.closest('button');
+    if (!b || b.disabled) return;
+    if (b.dataset.step) {
+      view = new Date(view.getFullYear(), view.getMonth() + Number(b.dataset.step), 1);
+      focusDay = view < today ? today : view;
+      renderCal(false);
+    } else if (b.classList.contains('cal-today')) { pick(today); }
+    else if (b.classList.contains('cal-clear')) { pick(null); }
+    else { pick(new Date(Number(b.dataset.time))); }
+  });
+  grid.addEventListener('keydown', function (e) {
+    var step = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 }[e.key];
+    if (step) {
+      e.preventDefault();
+      focusOn(new Date(focusDay.getFullYear(), focusDay.getMonth(), focusDay.getDate() + step));
+    } else if (e.key === 'PageUp' || e.key === 'PageDown') {
+      e.preventDefault();
+      focusOn(new Date(focusDay.getFullYear(), focusDay.getMonth() + (e.key === 'PageUp' ? -1 : 1), focusDay.getDate()));
+    }
+  });
+  cal.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { e.preventDefault(); closeCal(true); }
+  });
+  cal.addEventListener('focusout', function (e) {
+    // close when keyboard focus moves somewhere outside the picker
+    if (e.relatedTarget && !cal.contains(e.relatedTarget) && e.relatedTarget !== date) closeCal(false);
+  });
+  document.addEventListener('click', function (e) {
+    if (!cal.hidden && !e.target.closest('.date-wrap')) closeCal(false);
+  });
+  dateForm.addEventListener('reset', function () { selected = null; closeCal(false); });
 
   /* ---------- Booking form -> WhatsApp ---------- */
   var form = document.getElementById('appointment');
@@ -626,27 +953,171 @@ p{margin:0}
       (name ? form.phone : form.name).focus();
       return;
     }
+    if (form.website.value) { form.reset(); return; } // hidden field only bots fill in
+    var service = form.service.value, when = form.date.value, message = form.message.value.trim();
+
+    // Save the request to the clinic's Google Sheet. Fire-and-forget, so WhatsApp
+    // still opens straight away (pop-up blockers only allow it right after the click).
+    if (BOOKING_SHEET_URL) {
+      fetch(BOOKING_SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        keepalive: true,
+        body: new URLSearchParams({ name: name, phone: phone, service: service, date: when, message: message })
+      }).catch(function () {});
+    }
+
     var msg = 'Hello Asha Dental Clinic, I would like to book an appointment.\n' +
-      'Name: ' + name + '\nMobile: ' + phone + '\nTreatment: ' + form.service.value +
-      (form.date.value ? '\nPreferred date: ' + form.date.value : '');
+      'Name: ' + name + '\nMobile: ' + phone + '\nTreatment: ' + service +
+      (when ? '\nPreferred date: ' + when : '') +
+      (message ? '\nMessage: ' + message : '');
     window.open('https://wa.me/' + CLINIC_WHATSAPP + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
-    note.textContent = 'Opening WhatsApp… If it does not open, please call 083404 03072.';
+    note.textContent = 'Thank you! Opening WhatsApp… If it does not open, please call 083404 03072.';
     form.reset();
   });
+
+  /* ---------- Booking form in a dialog ---------- */
+  // Every "Book appointment" link opens the form in a pop-up. The same form moves
+  // into the dialog and back to its place in the Visit section when it closes.
+  var dialog = document.getElementById('book-dialog');
+  if (dialog.showModal) {
+    var formHome = document.createComment('booking form');
+    form.parentNode.insertBefore(formHome, form);
+
+    var openBooking = function () {
+      dialog.appendChild(form);
+      form.classList.add('in'); // skip the scroll-reveal entrance
+      settle(form);
+      note.textContent = '';
+      document.documentElement.classList.add('modal-open');
+      dialog.showModal();
+      if (window.matchMedia('(pointer: fine)').matches) form.name.focus();
+    };
+
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('a[href="#appointment"]')) return;
+      e.preventDefault();
+      openBooking();
+    });
+    dialog.querySelector('.dialog-close').addEventListener('click', function () { dialog.close(); });
+    dialog.addEventListener('click', function (e) {
+      if (e.target === dialog) dialog.close(); // click on the dimmed backdrop
+    });
+    dialog.addEventListener('cancel', function (e) {
+      // Esc closes the calendar first, then the dialog
+      if (!cal.hidden) { e.preventDefault(); closeCal(true); }
+    });
+    dialog.addEventListener('close', function () {
+      closeCal(false);
+      formHome.parentNode.insertBefore(form, formHome.nextSibling);
+      document.documentElement.classList.remove('modal-open');
+    });
+  }
+
+  /* ---------- Typing effect in the hero heading ---------- */
+  // The heading text never changes (for Google and screen readers). First the end of the
+  // heading types in once, letter by letter; then the blue phrase cycles, drawn by CSS from
+  // data-text after a pause on the original phrase.
+  var h1 = document.querySelector('.hero h1');
+  var hl = document.querySelector('.hero h1 .hl');
+  var tail = document.querySelector('.hero h1 .tail');
+
+  function typeTail(done) {
+    var letters = Array.prototype.map.call(tail.textContent, function (ch) {
+      var sp = document.createElement('span');
+      sp.textContent = ch;
+      return sp;
+    });
+    tail.textContent = '';
+    letters.forEach(function (sp) { tail.appendChild(sp); });
+    h1.classList.add('tail-typing');
+    var i = 0;
+    function step() {
+      if (i > 0) letters[i - 1].classList.remove('cur');
+      letters[i].classList.add('on', 'cur');
+      if (++i < letters.length) { setTimeout(step, 55); return; }
+      setTimeout(function () {
+        letters[i - 1].classList.remove('cur');
+        h1.classList.remove('tail-typing');
+        done();
+      }, 700);
+    }
+    setTimeout(step, 400);
+  }
+
+  if (hl && tail && !reduced) {
+    var words = [hl.textContent, 'Painless RCT', 'Single-Sitting RCT', 'Dental Implant'];
+    var srText = document.createElement('span'), typed = document.createElement('span');
+    srText.className = 'sr-only'; srText.textContent = words[0];
+    typed.className = 'type'; typed.setAttribute('aria-hidden', 'true'); typed.setAttribute('data-text', words[0]);
+    hl.textContent = '';
+    hl.appendChild(srText); hl.appendChild(typed);
+    var wi = 0, ci = words[0].length, deleting = true;
+    function tick() {
+      var word = words[wi], delay;
+      if (document.hidden) { delay = 500; }
+      else if (deleting) {
+        typed.setAttribute('data-text', word.slice(0, --ci));
+        if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; delay = 350; } else { delay = 45; }
+      } else {
+        typed.setAttribute('data-text', words[wi].slice(0, ++ci));
+        if (ci === words[wi].length) { deleting = true; delay = 2400; } else { delay = 90; }
+      }
+      setTimeout(tick, delay);
+    }
+    typeTail(function () { setTimeout(tick, 2400); });
+  }
 
   /* ---------- Footer year ---------- */
   document.getElementById('year').textContent = new Date().getFullYear();
 
   /* ---------- Reveal on scroll ---------- */
-  var reveals = document.querySelectorAll('.reveal');
+  // Items in a grid or list appear one after another
+  ['.featured-grid', '.service-grid', '.reasons', '.mini-grid', '.stats', '.faq .container'].forEach(function (sel) {
+    var group = document.querySelector(sel);
+    if (!group) return;
+    Array.prototype.forEach.call(group.querySelectorAll(':scope > :not(h2)'), function (el, i) {
+      el.classList.add('reveal');
+      el.style.transitionDelay = i * 90 + 'ms';
+    });
+  });
+  // Section titles rise in word by word (the heading text itself stays the same)
+  if (!reduced) {
+    document.querySelectorAll('.section-title, .visit-info h2').forEach(function (h) {
+      var words = h.textContent.trim().split(/\s+/);
+      h.textContent = '';
+      words.forEach(function (word, i) {
+        if (i) h.appendChild(document.createTextNode(' '));
+        var mask = document.createElement('span'), inner = document.createElement('span');
+        mask.className = 'w';
+        inner.textContent = word;
+        inner.style.setProperty('--i', i);
+        mask.appendChild(inner);
+        h.appendChild(mask);
+      });
+      h.classList.add('split');
+    });
+  }
+  // Once an item has appeared, drop the reveal styles so its hover effects run at their own speed
+  function settle(el) {
+    el.classList.remove('reveal', 'from-left', 'from-right', 'zoom');
+    el.style.transitionDelay = '';
+  }
+  var reveals = document.querySelectorAll('.reveal, .split');
   if (reduced || !('IntersectionObserver' in window)) {
-    reveals.forEach(function (el) { el.classList.add('in'); });
+    reveals.forEach(function (el) { el.classList.add('in'); settle(el); });
   } else {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        el.classList.add('in');
+        io.unobserve(el);
+        if (el.classList.contains('reveal')) {
+          setTimeout(function () { settle(el); }, (parseFloat(el.style.transitionDelay) || 0) + 900);
+        }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(function (el) { io.observe(el); });
   }
 
@@ -674,12 +1145,14 @@ p{margin:0}
 
   /* ---------- Animated network background ---------- */
   var PALETTES = {
-    light: { colors: ['#0E4F4A', '#2A9D8F', '#E76F51', '#3A86FF', '#9B5DE5', '#F2B544'], lineAlpha: 0.22, dotAlpha: 0.85 },
-    dark:  { colors: ['#7FD1B9', '#F2B544', '#F29E7D', '#8EC5FF', '#C9A7FF', '#FFFFFF'], lineAlpha: 0.18, dotAlpha: 0.9 }
+    light: { colors: ['#1E3A5F', '#0EA5E9', '#38BDF8', '#2D5A8A', '#0284C7', '#F2B544'], lineAlpha: 0.22, dotAlpha: 0.85 },
+    dark:  { colors: ['#7DD3FC', '#38BDF8', '#BAE6FD', '#0EA5E9', '#F2B544', '#FFFFFF'], lineAlpha: 0.18, dotAlpha: 0.9 }
   };
   var DENSITY = 70;     // points per 1280x720 area
   var SPEED = 1;        // movement speed multiplier
   var LINK = 150;       // max distance (px) for a connecting line
+  var MOUSE_LINK = 190; // dots within this distance (px) of the pointer link to it
+  var MOUSE_PUSH = 110; // dots within this distance (px) drift away from the pointer
 
   function rgba(hex, a) {
     var v = parseInt(hex.slice(1), 16);
@@ -692,17 +1165,29 @@ p{margin:0}
     this.opts = PALETTES[canvas.dataset.theme] || PALETTES.light;
     this.pts = [];
     this.visible = true;
+    this.mouse = null;
+    if (!reduced) {
+      // the canvas ignores pointer events, so listen on its section instead
+      var self = this, host = canvas.parentElement;
+      host.addEventListener('pointermove', function (e) { self.mouse = { x: e.clientX, y: e.clientY }; }, { passive: true });
+      host.addEventListener('pointerleave', function () { self.mouse = null; });
+    }
   }
   // r is a size from ResizeObserver (no forced layout); falls back to measuring
   Network.prototype.resize = function (r) {
     r = r || this.canvas.getBoundingClientRect();
     if (!r.width || !r.height) return;
+    var sx = r.width / this.w, sy = r.height / this.h;
     this.dpr = Math.min(window.devicePixelRatio || 1, 2);
     this.w = r.width; this.h = r.height;
     this.canvas.width = Math.round(r.width * this.dpr);
     this.canvas.height = Math.round(r.height * this.dpr);
-    this.seed();
-    if (reduced) this.draw(0); // static frame only
+    if (!this.pts.length) { this.seed(); }
+    else {
+      // keep the same dots and stretch them to the new size, so they don't jump
+      this.pts.forEach(function (p) { p.x *= sx; p.y *= sy; });
+    }
+    if (reduced) this.draw(0, true); // static frame only, even if off screen
   };
   Network.prototype.seed = function () {
     var isSmall = this.w < 640;
@@ -718,8 +1203,8 @@ p{margin:0}
       });
     }
   };
-  Network.prototype.draw = function (speed) {
-    if (!this.w || !this.visible) return;
+  Network.prototype.draw = function (speed, force) {
+    if (!this.w || (!this.visible && !force)) return;
     var ctx = this.ctx, pts = this.pts, i, j, p;
     ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
     ctx.clearRect(0, 0, this.w, this.h);
@@ -728,6 +1213,20 @@ p{margin:0}
       p.x += p.vx * speed; p.y += p.vy * speed; p.p += 0.02 * speed;
       if (p.x < -10) p.x = this.w + 10; else if (p.x > this.w + 10) p.x = -10;
       if (p.y < -10) p.y = this.h + 10; else if (p.y > this.h + 10) p.y = -10;
+    }
+    // pointer position in canvas space; measured at frame start, when layout is already clean
+    var m = null;
+    if (this.mouse) {
+      var r = this.canvas.getBoundingClientRect();
+      m = { x: this.mouse.x - r.left, y: this.mouse.y - r.top };
+      for (i = 0; i < pts.length; i++) {
+        p = pts[i];
+        var mx = p.x - m.x, my = p.y - m.y, md = Math.sqrt(mx * mx + my * my);
+        if (md > 0 && md < MOUSE_PUSH) {
+          var f = (1 - md / MOUSE_PUSH) * 1.8 * speed;
+          p.x += mx / md * f; p.y += my / md * f;
+        }
+      }
     }
     ctx.lineWidth = 1;
     for (i = 0; i < pts.length; i++) {
@@ -742,6 +1241,21 @@ p{margin:0}
           ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
         }
       }
+    }
+    if (m) {
+      ctx.lineWidth = 1.2;
+      for (i = 0; i < pts.length; i++) {
+        p = pts[i];
+        var ex = p.x - m.x, ey = p.y - m.y, ed = Math.sqrt(ex * ex + ey * ey);
+        if (ed < MOUSE_LINK) {
+          ctx.strokeStyle = rgba(p.c, (1 - ed / MOUSE_LINK) * 0.75);
+          ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(p.x, p.y); ctx.stroke();
+        }
+      }
+      ctx.fillStyle = rgba(this.opts.colors[0], 0.25);
+      ctx.beginPath(); ctx.arc(m.x, m.y, 7, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = rgba(this.opts.colors[0], 0.9);
+      ctx.beginPath(); ctx.arc(m.x, m.y, 2.5, 0, Math.PI * 2); ctx.fill();
     }
     for (i = 0; i < pts.length; i++) {
       p = pts[i];
