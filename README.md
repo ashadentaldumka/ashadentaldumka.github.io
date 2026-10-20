@@ -15,6 +15,10 @@ Google account:
    whole of `apps-script/booking-sheet.gs`, and click **Save**.
    - Optional: to get an email for every booking, put an address in `NOTIFY_EMAIL`,
      for example `var NOTIFY_EMAIL = 'clinic@example.com';`
+   - Then choose **setup** in the function list at the top and click **▶ Run** (allow access
+     when asked). The **Execution log** shows the link to the spreadsheet where bookings are
+     saved. If the script isn't attached to a spreadsheet, it creates one called
+     "Asha Dental – Bookings" in your Google Drive.
 3. Click **Deploy → New deployment**. Click the gear icon, choose **Web app**, then set:
    - **Execute as:** Me
    - **Who has access:** Anyone

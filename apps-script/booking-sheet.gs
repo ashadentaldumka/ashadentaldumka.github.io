@@ -1,15 +1,25 @@
-/** @OnlyCurrentDoc */ // only allow access to the sheet this script is attached to
-
 /**
  * Asha Dental Clinic – booking requests to a Google Sheet.
  *
  * The website's booking form posts each request here, and this script adds it as
- * a new row in the "Bookings" tab of the spreadsheet it is attached to.
+ * a new row in the "Bookings" tab. If the script is attached to a spreadsheet
+ * (Extensions → Apps Script), it uses that one; otherwise it creates a spreadsheet
+ * called "Asha Dental – Bookings" in your Google Drive the first time it runs.
+ *
+ * Run the "setup" function once from the editor to find the spreadsheet's link.
  * Setup steps are in the README ("Booking requests in Google Sheets").
  */
 
+var SPREADSHEET_NAME = 'Asha Dental – Bookings';
 var SHEET_NAME = 'Bookings';
 var NOTIFY_EMAIL = ''; // optional: an email address to alert on every new booking
+
+// Run this once from the editor (choose "setup", then ▶ Run). The execution log
+// shows the link to the spreadsheet where bookings are saved.
+function setup() {
+  var sheet = getSheet_();
+  Logger.log('Bookings are saved in: ' + sheet.getParent().getUrl());
+}
 
 function doPost(e) {
   var p = (e && e.parameter) || {};
@@ -52,11 +62,24 @@ function doGet() {
   return ContentService.createTextOutput('Asha Dental booking sheet is running.');
 }
 
-function getSheet_() {
+// The spreadsheet this script is attached to, or else the one it created earlier
+// (its ID is remembered in the script's properties), or else a new one.
+function getSpreadsheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName(SHEET_NAME);
-  if (!sheet) {
-    sheet = ss.insertSheet(SHEET_NAME);
+  if (ss) return ss;
+  var props = PropertiesService.getScriptProperties();
+  var id = props.getProperty('SPREADSHEET_ID');
+  if (id) return SpreadsheetApp.openById(id);
+  ss = SpreadsheetApp.create(SPREADSHEET_NAME);
+  ss.getSheets()[0].setName(SHEET_NAME);
+  props.setProperty('SPREADSHEET_ID', ss.getId());
+  return ss;
+}
+
+function getSheet_() {
+  var ss = getSpreadsheet_();
+  var sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
+  if (sheet.getLastRow() === 0) {
     sheet.appendRow(['Received', 'Name', 'Mobile', 'Treatment', 'Preferred date', 'Message', 'Status']);
     sheet.setFrozenRows(1);
     sheet.getRange('A:A').setNumberFormat('dd mmm yyyy, hh:mm');
