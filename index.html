@@ -84,7 +84,7 @@
     {"@type": "Question", "name": "Who is a good candidate for dental implants?",
      "acceptedAnswer": {"@type": "Answer", "text": "Most adults with one or more missing teeth and healthy gums can get dental implants. Dr. Prasenjeet checks your bone and gum health at a consultation before planning treatment."}},
     {"@type": "Question", "name": "How do I book an appointment at Asha Dental Clinic Dumka?",
-     "acceptedAnswer": {"@type": "Answer", "text": "Call 083404 03072, or fill in the booking form on this page to send your request on WhatsApp."}},
+     "acceptedAnswer": {"@type": "Answer", "text": "Call 083404 03072, or fill in the booking form on this page and our team will call you to confirm your appointment."}},
     {"@type": "Question", "name": "Where is Asha Dental Clinic located?",
      "acceptedAnswer": {"@type": "Answer", "text": "Asha Dental Clinic is in Dumka, Jharkhand. It is open 9 am – 9 pm Monday to Saturday, and 9 am – 2 pm on Sunday."}}
   ]
@@ -386,6 +386,16 @@ p{margin:0}
 .modal-open{overflow:hidden}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .form-privacy{font-size:13px;color:var(--muted);text-align:center;margin-top:-6px}
+/* Thank-you panel shown after a booking is sent */
+.book.sent > :not(.book-success){display:none}
+.book-success:not([hidden]){display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:24px 0 8px;outline:none}
+.success-icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--teal),#0284C7);color:var(--white);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 10px var(--mint);animation:pop-in .5s cubic-bezier(.3,1.6,.5,1) both}
+.success-icon .icon{width:34px;height:34px;stroke-width:2.6}
+@keyframes pop-in{from{transform:scale(.4);opacity:0}}
+.book-success p{font-size:16px;line-height:1.6;color:var(--muted);max-width:380px}
+.book-success .btn{margin-top:6px}
+.book-dialog .book-success h2{padding-right:0}
+.book button[type="submit"]:disabled{opacity:.7;cursor:wait}
 .form-note{font-size:14px;color:var(--teal);font-weight:600;min-height:1.2em}
 
 /* ============ Footer ============ */
@@ -482,7 +492,7 @@ p{margin:0}
   .card-service:hover,.card-featured:hover,.mini:hover,.stat:hover,.g-card:hover,.reasons li:hover,.reasons li:hover .reason-icon{transform:none}
   .card-featured::after{display:none}
   .faq details[open] p{animation:none}
-  .pulse-dot,.pill-dot{animation:none}
+  .pulse-dot,.pill-dot,.success-icon{animation:none}
   .pulse-dot::after{display:none}
   .book-dialog[open],.book-dialog[open]::backdrop{animation:none}
 }
@@ -688,7 +698,7 @@ p{margin:0}
     <details><summary>Is root canal treatment painful?</summary><p>No. We offer painless RCT in Dumka: treatment is done under local anaesthesia with advanced rotary instruments, so most patients feel little or no pain during the procedure. It relieves the toothache caused by the infection.</p></details>
     <details><summary>Can root canal treatment be done in a single sitting?</summary><p>Yes. Asha Dental Clinic offers single-sitting RCT in Dumka using advanced rotary instruments. Whether your tooth can be treated in one visit depends on the infection and the tooth, which Dr. Prasenjeet checks before treatment.</p></details>
     <details><summary>Who is a good candidate for dental implants?</summary><p>Most adults with one or more missing teeth and healthy gums can get dental implants. Dr. Prasenjeet checks your bone and gum health at a consultation before planning treatment.</p></details>
-    <details><summary>How do I book an appointment at Asha Dental Clinic Dumka?</summary><p>Call <a class="tel-tag" href="tel:+918340403072"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>083404 03072</a>, or fill in the <a href="#appointment">booking form</a> to send your request on WhatsApp.</p></details>
+    <details><summary>How do I book an appointment at Asha Dental Clinic Dumka?</summary><p>Call <a class="tel-tag" href="tel:+918340403072"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>083404 03072</a>, or fill in the <a href="#appointment">booking form</a> and our team will call you to confirm your appointment.</p></details>
     <details><summary>Where is Asha Dental Clinic located?</summary><p>We are in Dumka, Jharkhand. <a href="https://www.google.com/maps?cid=6839892958022701944" target="_blank" rel="noopener">Open in Google Maps</a> for directions. Open Mon – Sat 9 am – 9 pm, Sunday 9 am – 2 pm.</p></details>
   </div>
 </section>
@@ -721,7 +731,7 @@ p{margin:0}
 
     <form class="book reveal from-right" id="appointment" novalidate>
       <h2 id="book-title">Book an appointment</h2>
-      <p>Fill in your details and send them to us on WhatsApp. Or call <a class="tel-tag" href="tel:+918340403072"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>083404 03072</a>.</p>
+      <p>Fill in your details and our team will call you to confirm your appointment. Or call <a class="tel-tag" href="tel:+918340403072"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>083404 03072</a>.</p>
       <label class="field">Your name
         <input type="text" name="name" autocomplete="name" placeholder="Enter your full name" required>
       </label>
@@ -755,6 +765,12 @@ p{margin:0}
       <button type="submit">Request appointment</button>
       <p class="form-privacy">Your details are only used to arrange your appointment.</p>
       <p class="form-note" role="status" aria-live="polite"></p>
+      <div class="book-success" tabindex="-1" hidden>
+        <span class="success-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <h2>Thank you!</h2>
+        <p class="success-text"></p>
+        <button type="button" class="btn btn-primary success-done">Done</button>
+      </div>
     </form>
   </div>
 </section>
@@ -785,9 +801,8 @@ p{margin:0}
 (function () {
   'use strict';
 
-  var CLINIC_WHATSAPP = '918340403072'; // country code + number, no "+" or spaces
   // Google Apps Script web-app URL that saves bookings to the clinic's Google Sheet
-  // (ends in /exec; see README). Leave empty to only send bookings on WhatsApp.
+  // (ends in /exec; see README).
   var BOOKING_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwwqcbH7OifnarbbB6wvyfNzeHjlWp-kL97PHK5Z44JVY2IdZtEz2CGaQbP6J53RJAGGQ/exec';
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -941,9 +956,30 @@ p{margin:0}
   });
   dateForm.addEventListener('reset', function () { selected = null; closeCal(false); });
 
-  /* ---------- Booking form -> WhatsApp ---------- */
+  /* ---------- Booking form -> Google Sheet ---------- */
   var form = document.getElementById('appointment');
   var note = form.querySelector('.form-note');
+  var submitBtn = form.querySelector('button[type="submit"]');
+  var success = form.querySelector('.book-success');
+
+  function showThanks(phone, service, when) {
+    success.querySelector('.success-text').textContent =
+      'We have received your request for ' + service + (when ? ' on ' + when : '') +
+      '. Our team will call you on ' + phone + ' to confirm your appointment.';
+    form.classList.add('sent');
+    success.hidden = false;
+    success.focus();
+  }
+  function resetBooking() {
+    form.classList.remove('sent');
+    success.hidden = true;
+    note.textContent = '';
+  }
+  success.querySelector('.success-done').addEventListener('click', function () {
+    var dlg = document.getElementById('book-dialog');
+    if (dlg.open) dlg.close(); else resetBooking();
+  });
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var name = form.name.value.trim();
@@ -953,27 +989,31 @@ p{margin:0}
       (name ? form.phone : form.name).focus();
       return;
     }
-    if (form.website.value) { form.reset(); return; } // hidden field only bots fill in
     var service = form.service.value, when = form.date.value, message = form.message.value.trim();
+    if (form.website.value) { form.reset(); showThanks(phone, service, when); return; } // only bots fill this in
 
-    // Save the request to the clinic's Google Sheet. Fire-and-forget, so WhatsApp
-    // still opens straight away (pop-up blockers only allow it right after the click).
-    if (BOOKING_SHEET_URL) {
-      fetch(BOOKING_SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        keepalive: true,
-        body: new URLSearchParams({ name: name, phone: phone, service: service, date: when, message: message })
-      }).catch(function () {});
-    }
-
-    var msg = 'Hello Asha Dental Clinic, I would like to book an appointment.\n' +
-      'Name: ' + name + '\nMobile: ' + phone + '\nTreatment: ' + service +
-      (when ? '\nPreferred date: ' + when : '') +
-      (message ? '\nMessage: ' + message : '');
-    window.open('https://wa.me/' + CLINIC_WHATSAPP + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
-    note.textContent = 'Thank you! Opening WhatsApp… If it does not open, please call 083404 03072.';
-    form.reset();
+    note.textContent = '';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    // Google's script sends no readable reply to other sites ("no-cors"), so a finished
+    // request counts as sent; a network error or a 20-second timeout counts as failed.
+    var timeout = new AbortController();
+    var timer = setTimeout(function () { timeout.abort(); }, 20000);
+    fetch(BOOKING_SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      signal: timeout.signal,
+      body: new URLSearchParams({ name: name, phone: phone, service: service, date: when, message: message })
+    }).then(function () {
+      form.reset();
+      showThanks(phone, service, when);
+    }, function () {
+      note.textContent = 'Sorry, your request could not be sent. Please check your internet connection and try again, or call 083404 03072.';
+    }).then(function () {
+      clearTimeout(timer);
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Request appointment';
+    });
   });
 
   /* ---------- Booking form in a dialog ---------- */
@@ -1009,6 +1049,7 @@ p{margin:0}
     });
     dialog.addEventListener('close', function () {
       closeCal(false);
+      resetBooking();
       formHome.parentNode.insertBefore(form, formHome.nextSibling);
       document.documentElement.classList.remove('modal-open');
     });

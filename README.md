@@ -4,10 +4,10 @@ Website for Asha Dental Clinic, Dumka. A single static page (`index.html`) hoste
 
 ## Booking requests in Google Sheets
 
-The booking form sends every request to the clinic's WhatsApp. It can also save each
-request as a row in a Google Sheet, using the small script in
-[`apps-script/booking-sheet.gs`](apps-script/booking-sheet.gs). Setup takes about 5 minutes
-and is done once, signed in to the clinic's Google account:
+The booking form saves each request as a row in a Google Sheet, using the small script in
+[`apps-script/booking-sheet.gs`](apps-script/booking-sheet.gs), and then shows the visitor a
+thank-you message. Setup takes about 5 minutes and is done once, signed in to the clinic's
+Google account:
 
 1. Go to [sheets.new](https://sheets.new) to create a new Google Sheet, and name it
    something like "Asha Dental – Bookings".
